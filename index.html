@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silver Oaks International School, Mokila | Admissions Open 2027-28</title>
+  <meta name="description" content="The 25-year legacy of Silver Oaks now continues in Mokila. IB PYP + IB MYP / CBSE. Admissions open for PP I to Grade 5. Download the fee structure and mini brochure.">
+  <link rel="icon" href="https://cdn.prod.website-files.com/68da2cddb010df995f887130/6926cf8b75893199581be613_Favicon.png">
+
+  <!-- Font: Montserrat for everything -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v4 (browser build). It reads the classes in this file and creates the CSS. -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+
+  <!-- Colours, fonts and the one custom animation.
+       Each colour becomes a Tailwind class, e.g. --color-maroon gives bg-maroon, text-maroon, border-maroon. -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brand: #b81b38;   /* Silver Oaks red */
+      --color-maroon: #3f0c17;  /* dark sections, menu, page transition */
+      --color-paper: #f6f4ef;   /* warm off-white page */
+      --color-stone: #e6e2da;   /* soft panel colour */
+      --color-ink: #1d1d1f;     /* main text */
+
+      --font-heading: "Montserrat", Arial, sans-serif;
+      --font-body: "Montserrat", Arial, sans-serif;
+
+      /* Facilities strip: slides left forever */
+      --animate-marquee: marquee 60s linear infinite;
+      @keyframes marquee {
+        to { transform: translateX(-50%); }
+      }
+    }
+
+    body {
+      @apply bg-paper font-body text-ink antialiased;
+    }
+    h1, h2, h3 {
+      @apply font-heading font-medium tracking-tight;
+    }
+
+    /* Wide screens: everything (text, spacing, page width) grows a little above 1440px wide,
+       up to 125% at 2560px. Phones and laptops stay at the normal 16px. */
+    html {
+      font-size: clamp(16px, calc(8px + 0.55vw), 20px);
+    }
+    /* Phones: a little more room in the form's fields */
+    @media (max-width: 767px) {
+      #lead-form input[type="text"],
+      #lead-form input[type="email"],
+      #lead-form input[type="tel"],
+      #lead-form input[type="date"],
+      #lead-form select {
+        padding-block: 0.7rem;
+      }
+    }
+
+    /* Phones: body paragraphs slightly smaller (15px instead of 16px).
+       In "@layer base" so any paragraph with its own size class (text-lg, text-sm …) keeps that size. */
+    @layer base {
+      @media (max-width: 767px) {
+        main p,
+        main li {
+          font-size: 0.9375rem;
+        }
+      }
+    }
+
+    /* Menu links: text size and spacing follow the screen height, so all 9 always fit */
+    .menu-link {
+      @apply block border-b border-ink/15 font-medium tracking-tight transition-colors hover:text-brand;
+      font-size: clamp(1rem, 2.7dvh, 2.25rem);
+      padding-block: clamp(0.35rem, 1.1dvh, 1rem);
+    }
+
+    /* Hide the default arrow of <details> so we can show our own "+" */
+    summary::-webkit-details-marker {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== HEADER ==========
+       Sits on the hero photo with a white logo. Once you scroll, the script adds data-solid
+       and the header turns off-white with the colour logo (see the data-solid: classes). -->
+  <header id="site-header" class="group fixed inset-x-0 top-0 z-40 text-white transition-colors duration-500 data-solid:bg-paper data-solid:text-ink data-solid:shadow-sm">
+    <div class="mx-auto flex max-w-[90rem] items-center justify-between px-5 py-3 md:px-10">
+
+      <!-- Left: logo (white on the photo, colour once scrolled) -->
+      <a href="#top" aria-label="Back to top">
+        <img decoding="async" src="images/logo-white.svg" alt="Silver Oaks International School, Mokila" class="h-20 w-auto group-data-solid:hidden md:h-24">
+        <img decoding="async" src="images/logo.svg" alt="Silver Oaks International School, Mokila" class="hidden h-16 w-auto group-data-solid:block md:h-20">
+      </a>
+
+      <!-- Right: menu button -->
+      <div class="flex justify-end">
+        <button id="menu-open" type="button" class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase" aria-label="Open menu" aria-controls="menu">
+          <span class="hidden md:inline">Menu</span>
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========== MENU (opens from the Menu button) ==========
+       A panel slides in from the right and covers the right half of the screen (phones: the whole screen).
+       Text size and spacing follow the screen height, so every item always fits without scrolling. -->
+  <div id="menu" class="fixed inset-0 z-50 hidden" role="dialog" aria-modal="true" aria-label="Menu">
+
+    <!-- Dimmed page on the left. Clicking it closes the menu. -->
+    <div id="menu-backdrop" class="absolute inset-0 bg-black/60"></div>
+
+    <nav id="menu-panel" class="absolute inset-y-0 right-0 flex h-dvh w-full flex-col bg-paper px-6 py-4 text-ink md:w-1/2 md:px-12 md:py-8" aria-label="Page sections">
+
+      <div class="flex items-center justify-between">
+        <img src="images/logo.svg" alt="Silver Oaks International School, Mokila" class="h-[clamp(3rem,8.5dvh,4.5rem)] w-auto">
+        <button id="menu-close" type="button" class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase" aria-label="Close menu">
+          Close <span class="text-3xl leading-none font-light">×</span>
+        </button>
+      </div>
+
+      <ul class="my-auto border-t border-ink/15">
+        <li data-menu-item><a href="#meet" class="menu-link">Meet Silver Oaks Mokila</a></li>
+        <li data-menu-item><a href="#walkthrough" class="menu-link">Campus Walkthrough</a></li>
+        <li data-menu-item><a href="#curriculum" class="menu-link">Curriculum</a></li>
+        <li data-menu-item><a href="#philosophy" class="menu-link">Our Learning Philosophy</a></li>
+        <li data-menu-item><a href="#commitment" class="menu-link">Our Commitment</a></li>
+        <li data-menu-item><a href="#facilities" class="menu-link">Campus Facilities</a></li>
+        <li data-menu-item><a href="#faq" class="menu-link">FAQs</a></li>
+        <li data-menu-item><a href="#contact" class="menu-link">Contact Us</a></li>
+      </ul>
+
+      <div data-menu-item>
+        <div class="grid grid-cols-2 gap-3">
+          <button type="button" data-download="fees" class="border border-ink py-3 text-[11px] font-semibold tracking-[0.06em] uppercase sm:tracking-[0.12em] transition-colors hover:bg-ink hover:text-white active:bg-ink active:text-white max-md:bg-ink/5 max-md:active:bg-ink max-md:data-pressed:bg-ink max-md:active:text-white max-md:data-pressed:text-white">Download Fee Structure</button>
+          <button type="button" data-download="brochure" class="bg-brand py-3 text-[11px] font-semibold tracking-[0.06em] text-white uppercase sm:tracking-[0.12em] transition-colors hover:bg-maroon">Download Mini Brochure</button>
+        </div>
+        <p class="mt-3 text-sm text-ink/70">
+          Admissions: <a href="tel:9603855577" class="hover:text-brand">9603855577</a> &amp; <a href="tel:9603955577" class="hover:text-brand">9603955577</a><br>
+          <a href="mailto:admissions@mk.silveroaks.co.in" class="hover:text-brand">admissions@mk.silveroaks.co.in</a>
+        </p>
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- ========== SIDE TABS (desktop): Download Fee Structure + Download Mini Brochure ==========
+       Hidden on the hero; they slide in from the right once the visitor scrolls past it (script part 2b). -->
+  <div id="side-tabs" class="invisible fixed top-1/2 right-0 z-30 hidden -translate-y-1/2 flex-col md:flex">
+    <button type="button" data-download="fees" class="border border-r-0 border-ink/20 bg-paper px-3 py-5 text-base font-medium text-ink transition-colors [writing-mode:vertical-rl] hover:bg-ink hover:text-white">
+      Download Fee Structure
+    </button>
+    <button type="button" data-download="brochure" class="bg-brand px-3 py-5 text-base font-medium text-white transition-colors [writing-mode:vertical-rl] hover:bg-maroon">
+      Download Mini Brochure
+    </button>
+  </div>
+
+
+  <main id="top">
+
+    <!-- ========== 1. HERO ==========
+         Text sits low over the photo (darker at the bottom so it reads well), with the two main buttons. -->
+    <section class="relative flex min-h-[100svh] items-end overflow-hidden">
+      <picture>
+        <source media="(max-width: 767px)" srcset="images/hero-mobile.webp">
+        <img decoding="async" id="hero-image" style="will-change: transform" src="images/hero-desktop.webp"
+             alt="Silver Oaks Mokila campus" class="absolute inset-0 h-full w-full object-cover">
+      </picture>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/40"></div>
+
+      <div class="relative mx-auto w-full max-w-[90rem] px-5 pt-40 pb-24 text-white md:px-10 md:pb-20">
+        <p data-fade class="text-[11px] font-semibold tracking-[0.2em] uppercase">ADMISSION ENQUIRIES OPEN: PP1 - Grade 5</p>
+        <h1 data-split class="mt-5 text-[10.5vw] leading-[0.95] font-semibold whitespace-nowrap md:text-8xl 2xl:text-9xl">
+          Silver Oaks<br>
+          <span class="font-light text-white/90">Mokila Campus</span>
+        </h1>
+
+        <div class="mt-8 grid items-end gap-8 border-t border-white/25 pt-8 md:grid-cols-[1fr_auto]">
+          <p data-fade class="max-w-xl text-lg leading-snug md:text-2xl">25 years of legacy, now continues in Mokila!</p>
+          <div data-fade class="grid gap-3 sm:flex sm:flex-wrap">
+            <button type="button" data-download="fees" class="border border-white bg-white px-7 py-4 text-[11px] font-semibold tracking-[0.15em] text-ink uppercase transition-colors hover:bg-brand hover:text-white">Download Fee Structure</button>
+            <button type="button" data-download="brochure" class="border border-white px-7 py-4 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors hover:bg-white hover:text-ink active:bg-white active:text-ink max-md:bg-white/15 max-md:active:bg-white max-md:data-pressed:bg-white max-md:active:text-ink max-md:data-pressed:text-ink">Download Mini Brochure</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== 2. MEET SILVER OAKS MOKILA (text only) ========== -->
+    <section id="meet" class="mx-auto max-w-3xl px-5 py-10 text-center md:py-12 lg:py-16">
+      <h2 data-split class="text-3xl leading-tight md:text-5xl">Welcome to Silver Oaks Mokila</h2>
+      <!-- <p data-fade class="mt-6 text-xl leading-snug font-medium md:text-2xl">The 25-year legacy of Silver Oaks now continues in Mokila!</p> -->
+      <div data-fade class="mt-8 space-y-4 leading-relaxed text-ink/80">
+        <p>Built on a legacy of 25 years and five campuses, Silver Oaks is guided by a simple yet enduring philosophy: Character Before Competence. It is a belief that integrity, empathy and purpose matter just as much as achievement, and one that continues to shape every aspect of the learning experience.</p>
+        <p>Serving families across Hyderabad’s evolving landscape, Silver Oaks Mokila brings rigorous, values-led education closer to the community. From the early years through Grade 5, young learners will grow in thoughtfully designed spaces, guided by educators who nurture curiosity, encourage questioning and foster independence.</p>
+        <p>Here, character is not simply taught. It is lived, every day.</p>
+      </div>
+    </section>
+
+
+    <!-- ========== 3. CAMPUS WALKTHROUGH (video) ==========
+         The YouTube player only loads after a click (script part 4). -->
+    <section id="walkthrough" class="mx-auto max-w-[90rem] px-5 pb-10 md:px-10 md:pb-12 lg:pb-16">
+      <h2 data-split class="text-center text-3xl leading-tight md:text-5xl">Campus Walkthrough</h2>
+      <figure id="walkthrough-video" class="mt-10 md:mt-14">
+        <div id="video-box" class="relative aspect-video overflow-hidden bg-ink">
+          <!-- Cover that hides the video's left part; it shrinks away while scrolling (script part 6) -->
+          <div id="walkthrough-cover" class="pointer-events-none absolute inset-0 z-10 origin-left bg-paper" style="will-change: transform; transform: scaleX(0)"></div>
+          <!-- Invisible layer over the playing video. It keeps page scrolling smooth (a YouTube player
+               would otherwise take the mouse wheel). Clicking it turns the sound on and lets clicks
+               reach the player; it comes back when the mouse leaves the video (script part 4). -->
+          <button id="video-shield" type="button" class="absolute inset-0 z-[5] hidden items-end justify-start p-4" aria-label="Turn on the video's sound">
+            <span id="video-sound-label" class="flex items-center gap-2 bg-black/60 px-4 py-2.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>
+              Turn on sound
+            </span>
+          </button>
+          <button id="video-button" type="button" class="group absolute inset-0 h-full w-full" aria-label="Play the SilverOaks International School Mokila campus walkthrough video">
+            <img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/6ab6024a1ed7d303023f7ba4_campus-cover.png" alt="" class="h-full w-full object-cover" loading="lazy">
+            <span class="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/10"></span>
+            <span class="absolute top-1/2 left-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white bg-black/30 text-white transition-colors group-hover:bg-white group-hover:text-ink md:h-24 md:w-24">
+              <svg class="ml-1 h-7 w-7" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </button>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ========== 4. CURRICULUM: three tall photo cards ========== -->
+    <section id="curriculum" class="bg-stone py-10 md:py-12 lg:py-16">
+      <div class="mx-auto max-w-[90rem] px-5 md:px-10">
+        <div class="mx-auto max-w-6xl text-center">
+          <h2 data-split class="text-[min(1.875rem,6.6vw)] leading-tight whitespace-nowrap md:text-5xl md:whitespace-normal">Education with Purpose</h2>
+          <p data-fade class="mt-3 text-[11px] font-semibold tracking-[0.2em] uppercase">IB Primary Years Programme (IB PYP)<br class="md:hidden"><span class="hidden md:inline"> &nbsp;&nbsp;</span>|&nbsp;&nbsp;&nbsp;CBSE Secondary Education</p>
+          <p data-fade class="mx-auto mt-6 max-w-3xl leading-relaxed text-ink/80">We stand at a historic inflection point. While AI can compute, create and replicate skills, it cannot replace moral courage, empathy, curiosity or human resilience. At Silver Oaks, education goes beyond creating test-takers. It is about nurturing well-rounded human beings.</p>
+          <!-- On its own line: one line on wide screens, wraps on smaller ones -->
+          <p data-fade class="mx-auto mt-4 max-w-3xl font-bold leading-relaxed xl:max-w-none xl:whitespace-nowrap">The Mokila campus offers IB PYP and CBSE pathways. Other IB programmes and CBSE grade-level offerings vary by campus.</p>
+        </div>
+
+        <!-- Phones: swipe sideways. Tablets and up: three columns. -->
+        <div id="curriculum-viewport" class="mt-12 overflow-hidden md:mt-14 md:overflow-visible" style="touch-action: pan-y">
+        <div id="curriculum-track" class="flex md:grid md:grid-cols-3 md:gap-5">
+          <button type="button" data-download="brochure" data-fade class="group relative block w-full shrink-0 overflow-hidden text-left select-none md:w-auto">
+            <img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/6abb557c04ea5f35729d372f_ib-card1.png" alt="IB PYP students in class" data-parallax style="will-change: transform" class="aspect-[3/4] w-full scale-110 object-cover" loading="lazy">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></span>
+            <span class="absolute inset-x-0 bottom-0 p-8 text-center text-white">
+              <span class="block text-[11px] font-semibold tracking-[0.2em] uppercase">PP1 - Grade 5</span>
+              <span class="mt-2 block font-heading text-5xl font-medium">IB PYP</span>
+              <span class="mx-auto mt-4 block max-w-xs text-sm text-white/85">Nurturing Curiosity Before the World Dulls It</span>
+              <span class="mt-6 inline-block border border-white/70 px-5 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase md:px-3 md:tracking-[0.08em] xl:px-5 xl:tracking-[0.15em] transition-colors group-hover:bg-white group-hover:text-ink group-active:bg-white group-active:text-ink max-md:bg-white/15 max-md:group-active:bg-white max-md:group-data-pressed:bg-white max-md:group-active:text-ink max-md:group-data-pressed:text-ink">Download Mini Brochure</span>
+            </span>
+          </button>
+
+          <button type="button" data-download="brochure" data-fade class="group relative block w-full shrink-0 overflow-hidden text-left select-none md:w-auto">
+            <img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/6abb558be48f3c140d272188_ib-card2.png" alt="IB MYP students working together" data-parallax style="will-change: transform" class="aspect-[3/4] w-full scale-110 object-cover" loading="lazy">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></span>
+            <span class="absolute inset-x-0 bottom-0 p-8 text-center text-white">
+              <span class="block text-[11px] font-semibold tracking-[0.2em] uppercase">Grade 6 - Grade 10 (For coming years)</span>
+              <span class="mt-2 block font-heading text-5xl font-medium">IB MYP</span>
+              <span class="mx-auto mt-4 block max-w-xs text-sm text-white/85">From Knowledge Consumption to Critical Reflection</span>
+              <span class="mt-6 inline-block border border-white/70 px-5 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase md:px-3 md:tracking-[0.08em] xl:px-5 xl:tracking-[0.15em] transition-colors group-hover:bg-white group-hover:text-ink group-active:bg-white group-active:text-ink max-md:bg-white/15 max-md:group-active:bg-white max-md:group-data-pressed:bg-white max-md:group-active:text-ink max-md:group-data-pressed:text-ink">Download Mini Brochure</span>
+            </span>
+          </button>
+
+          <button type="button" data-download="brochure" data-fade class="group relative block w-full shrink-0 overflow-hidden text-left select-none md:w-auto">
+            <img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/6abb55987e7d53ce4c40b148_ib-card3.png" alt="CBSE students on campus" data-parallax style="will-change: transform" class="aspect-[3/4] w-full scale-110 object-cover" loading="lazy">
+            <span class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></span>
+            <span class="absolute inset-x-0 bottom-0 p-8 text-center text-white">
+              <span class="block text-[11px] font-semibold tracking-[0.2em] uppercase">CBSE Grades 11 & 12 (For Coming Years)</span>
+              <span class="mt-2 block font-heading text-5xl font-medium">IB DP</span>
+              <span class="mx-auto mt-4 block max-w-xs text-sm text-white/85">Building Purpose Alongside Ambition</span>
+              <span class="mt-6 inline-block border border-white/70 px-5 py-2 text-[11px] font-semibold tracking-[0.15em] uppercase md:px-3 md:tracking-[0.08em] xl:px-5 xl:tracking-[0.15em] transition-colors group-hover:bg-white group-hover:text-ink group-active:bg-white group-active:text-ink max-md:bg-white/15 max-md:group-active:bg-white max-md:group-data-pressed:bg-white max-md:group-active:text-ink max-md:group-data-pressed:text-ink">Download Mini Brochure</span>
+            </span>
+          </button>
+        </div>
+        </div>
+
+        <!-- Carousel controls (phones only) -->
+        <div class="mt-6 flex items-center justify-between md:hidden">
+          <p id="curriculum-count" class="text-[11px] font-semibold tracking-[0.15em]" aria-live="polite">1 / 3</p>
+          <div class="flex gap-2">
+            <button id="curriculum-prev" type="button" class="flex h-11 w-11 items-center justify-center border border-ink transition-colors hover:bg-ink hover:text-white active:bg-ink active:text-white max-md:bg-white max-md:active:bg-ink max-md:data-pressed:bg-ink max-md:active:text-white max-md:data-pressed:text-white" aria-label="Previous programme">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <button id="curriculum-next" type="button" class="flex h-11 w-11 items-center justify-center border border-ink transition-colors hover:bg-ink hover:text-white active:bg-ink active:text-white max-md:bg-white max-md:active:bg-ink max-md:data-pressed:bg-ink max-md:active:text-white max-md:data-pressed:text-white" aria-label="Next programme">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== 5. OUR LEARNING PHILOSOPHY (Director's message) ========== -->
+    <!-- Phones: text first, then the photo with the name under it. Large screens: photo left, text right. -->
+    <section id="philosophy" class="mx-auto grid max-w-[90rem] items-center gap-10 px-5 max-lg:flex max-lg:flex-col max-lg:items-stretch max-lg:gap-0 py-10 md:px-10 md:py-12 lg:grid-cols-[2fr_3fr] lg:gap-20 lg:py-16">
+      <figure data-fade class="order-2 lg:order-1 max-lg:order-3 max-lg:mt-10">
+        <img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/6ab5087098c9c4472cdbb79f_leadership.png"
+             alt="Dr. Seetha Murty, Director Education, SilverOaks International Schools" class="mx-auto w-full max-w-md max-md:w-[90%] max-md:translate-x-[8%]" loading="lazy">
+        <figcaption class="mx-auto mt-4 max-w-md text-center lg:text-left">
+          <span class="block font-heading text-xl md:text-2xl">Dr. Seetha Murty</span>
+          <span class="block text-sm text-ink/70">(Director of Education) <br/> SilverOaks International Schools <br/> Hyderabad | Visakhapatnam </span>
+        </figcaption>
+      </figure>
+      <div class="order-1 lg:order-2 max-lg:contents">
+        <p data-fade class="text-[11px] font-semibold tracking-[0.2em] uppercase max-lg:order-1">From the Dean's Desk</p>
+        <h2 data-split class="mt-5 text-2xl leading-tight md:text-4xl max-lg:order-2">&OpenCurlyDoubleQuote;Destiny of a country begins in its classrooms&rdquo; is the belief that guides Dr. Seetha Murty's approach to education at Silver Oaks International Schools.</h2>
+        <div data-fade class="mt-8 space-y-4 leading-relaxed text-ink/80 max-lg:order-4">
+          <p>With master’s degrees in education and political science, along with academic programmes at Harvard and Stanford Universities and extensive International Baccalaureate (IB) training, she fondly describes herself as the Principal Learner at Silver Oaks.</p>
+          <p>She has been instrumental in introducing the International Baccalaureate Programme and championing research-based teaching and learning through cognitive approaches. She also trains school heads and teachers at international schools across the Asia-Pacific region.</p>
+          <p>Recognised by The Times of India among the state's top three leaders in the Lead India Contest, she draws inspiration from Mahatma Gandhi’s philosophy of personal responsibility and social transformation.</p>
+          <p>This philosophy continues to shape Silver Oaks as an ecosystem for inspired learning.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========  FEE STRUCTURE (amounts are blurred: the full fee structure is a download) ========== -->
+    <!-- <section id="fees" class="bg-maroon py-24 text-white lg:py-32">
+      <div class="mx-auto max-w-[90rem] px-5 md:px-10">
+        <h2 data-split class="text-center text-3xl leading-tight md:text-5xl">Fee Structure</h2>
+        <p data-fade class="mt-5 text-center text-white/75">Everything you need to know about Silver Oaks fee for the year 2027 - 2028</p>
+
+        <div data-fade class="mx-auto mt-14 grid max-w-5xl divide-white/20 text-center lg:grid-cols-3 lg:divide-x">
+          <div class="py-6">
+            <p class="font-heading text-6xl font-light">3</p>
+            <p class="mt-2 text-sm text-white/75">Payment is structured in 3 terms per academic year.</p>
+          </div>
+          <div class="py-6">
+            <p class="font-heading text-6xl font-light blur-sm select-none" aria-hidden="true">₹0,00,000</p>
+            <p class="mt-2 text-sm text-white/75">IB PYP (PP1 &amp; PP2) · Tuition / term</p>
+          </div>
+          <div class="py-6">
+            <p class="font-heading text-6xl font-light blur-sm select-none" aria-hidden="true">₹0,00,000</p>
+            <p class="mt-2 text-sm text-white/75">IB PYP (Grade 1 - 5) · Tuition / term</p>
+          </div>
+        </div>
+
+        <ul data-fade class="mx-auto mt-10 max-w-3xl space-y-1 text-center text-sm text-white/70">
+          <li>Fee to be paid at the time of admission, 14th August and 15th December</li>
+          <li>Transport and Lunch are optional</li>
+          <li>Fee hike of 10% can be expected every year</li>
+        </ul>
+
+        <div data-fade class="mt-12 text-center">
+          <button type="button" data-download="fees" class="border border-white/70 px-7 py-3 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors hover:bg-white hover:text-ink active:bg-white active:text-ink max-md:bg-white/10 max-md:active:bg-white max-md:data-pressed:bg-white max-md:active:text-ink max-md:data-pressed:text-ink">View the Fee Structure</button>
+        </div>
+      </div>
+    </section> -->
+
+
+    <!-- ========== 6. A 25-YEAR COMMITMENT ========== -->
+    <section id="commitment" class="bg-stone py-10 md:py-12 lg:py-16">
+      <div class="mx-auto grid max-w-[90rem] gap-14 px-5 md:px-10 lg:grid-cols-[2fr_3fr] lg:gap-20">
+        <div class="min-w-0 lg:sticky lg:top-32 lg:self-start">
+          <h2 data-split class="text-2xl leading-tight md:text-4xl">A 25-YEAR COMMITMENT <br/> TO HUMAN-CENTRED LEARNING</h2>
+          <p data-fade class="mt-6 leading-relaxed text-ink/80">For over two decades, we have stayed true to this belief, nurturing an ecosystem where academic excellence and human values grow together, beyond the race for ranks and passing trends.</p>
+          <!-- <p data-fade class="mt-6 font-heading text-[clamp(0.8rem,3.6vw,1.2rem)] font-medium whitespace-nowrap">Admission Availability Open: PP I to Grade 5</p> -->
+          <button type="button" data-fade data-download="brochure" class="mt-8 border border-ink px-6 py-3 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors hover:bg-ink hover:text-white active:bg-ink active:text-white max-md:bg-white max-md:active:bg-ink max-md:data-pressed:bg-ink max-md:active:text-white max-md:data-pressed:text-white">Download Mini Brochure</button>
+        </div>
+
+        <ul class="border-t border-ink/20">
+          <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl"><span data-count="25" class="tabular-nums">25</span> Years</h3><p class="mt-2 leading-relaxed text-ink/75">of deliberate, research-driven pedagogical heritage.</p></div>
+          </li>
+          <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl"><span data-count="7000" class="tabular-nums">7,000</span>+</h3><p class="mt-2 leading-relaxed text-ink/75">acorns discovering their purpose and voice daily.</p></div>
+          </li>
+          <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl"><span data-count="12000" class="tabular-nums">12,000</span>+</h3><p class="mt-2 leading-relaxed text-ink/75">families walking beside us as partners in character-building.</p></div>
+          </li>
+          <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl"><span data-count="4000" class="tabular-nums">4,000</span>+</h3><p class="mt-2 leading-relaxed text-ink/75">alumni carrying the Silver Oaks spirit into the world.</p></div>
+          </li>
+          <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl"><span data-count="500" class="tabular-nums">500</span>+</h3><p class="mt-2 leading-relaxed text-ink/75">educators shaping minds, nurturing values and inspiring possibilities.</p></div>
+          </li>
+          <!-- <li data-fade class="border-b border-ink/20 py-6 md:py-7">
+            <div><h3 class="text-xl leading-snug md:text-2xl">Confirm Admission</h3><p class="mt-2 leading-relaxed text-ink/75">Once a seat is offered, complete the enrollment process by submitting documents and paying the first-term fee within the scheduled timeline.</p></div>
+          </li> -->
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========== 7. CAMPUS FACILITIES (moving strip) ==========
+         The cards are written once; the script copies them so the strip loops without a gap (script part 8).
+         Hovering the strip pauses it. -->
+    <section id="facilities" class="overflow-hidden border-t border-ink/10 py-10 md:py-12 lg:py-16">
+      <div class="mx-auto mb-14 max-w-5xl px-5 text-center">
+        <h2 data-split class="text-3xl leading-tight md:text-5xl lg:whitespace-nowrap">A Sneak Peek into Mokila Campus</h2>
+        <p data-fade class="mx-auto mt-6 max-w-2xl leading-relaxed text-ink/80">At Silver Oaks Mokila, every space on campus is thoughtfully designed to support growth, creativity, and exploration, designed from the ground up for unhurried, focused learning.</p>
+      </div>
+
+      <!-- Full-width single line (hidden on phones) -->
+      <div data-fade class="-mt-6 mb-14 hidden px-10 md:block">
+        <p class="mx-auto w-max text-sm font-medium whitespace-nowrap text-ink/70 2xl:text-base">BIOPHILIC ARCHITECTURE | INTEGRATED CURRICULUM | MODERN INFRATSTRUCTURE EXPANSIVE SPORTS ARENAS | ECO-CONSCIOUS CAMPUS | SHARED INSTITUTIONAL HERITAGE</p>
+      </div>
+
+      <div class="group">
+        <ul class="facility-track flex w-max will-change-transform animate-marquee gap-6 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bc096362993029846a7_Card%20-%20Facilities.webp" alt="Students dancing" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Dance</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bc671584b6d57438e32_Card%20-%20Facilities%20(1).webp" alt="Student playing piano" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Music</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bccf32eb53e53dd7943_Card%20-%20Facilities%20(2).webp" alt="Students playing tennis" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Tennis</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bd3bb21f61d2d647475_Card%20-%20Facilities%20(3).webp" alt="Students playing basketball" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Basketball</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bdcda5fde22757fc38b_Card%20-%20Facilities%20(4).webp" alt="School PP playing area" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">PP Playing Area</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1bf5e3f913223d01218c_Card%20-%20Facilities%20(5).webp" alt="Students skating" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Skating</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1c1758736513b9db4931_Card%20-%20Facilities%20(6).webp" alt="Students swimming" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Swimming</p>
+          </li>
+          <li class="w-64 shrink-0 md:w-80">
+            <div class="overflow-hidden"><img decoding="async" src="https://cdn.prod.website-files.com/68dbd46bf4e794234daa9570/68fa1c54e4ee34955b67bdbb_Card%20-%20Facilities%20(7).webp" alt="Students doing co and extra curricular activities" class="aspect-[4/5] w-full object-cover transition-transform duration-700 hover:scale-105"></div>
+            <p class="mt-3 font-heading text-2xl">Co &amp; Extra Curricular Activities</p>
+          </li>
+        </ul>
+      </div>
+
+    </section>
+
+
+    <!-- ========== 8. FAQ ==========
+         Uses the built-in <details> tag: it opens and closes on click without any JavaScript. -->
+    <section id="faq" class="mx-auto max-w-[90rem] px-5 pb-10 md:px-10 md:pb-12 lg:pb-16">
+      <h2 data-split class="text-center text-3xl leading-tight md:text-5xl">FAQs</h2>
+
+      <div data-fade class="mx-auto mt-14 max-w-4xl border-t border-ink/20">
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">1. What is Silver Oaks Mokila?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Silver Oaks Mokila is the newest campus of Silver Oaks International School in Hyderabad, bringing 25 years of educational experience and the philosophy of Character Before Competence to the Mokila community.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">2. When will Silver Oaks Mokila open?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Silver Oaks Mokila is scheduled to open in June 2027 for the 2027–28 academic year.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">3. Which grades will be offered at Silver Oaks Mokila?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">The campus will initially welcome students from PP1 to Grade 5, catering to children in their formative and primary learning years.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">4. Where is Silver Oaks Mokila located?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Silver Oaks Mokila is located in Mokila, Hyderabad, making quality, values-led education accessible to families in and around the rapidly developing neighbourhood.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">5. What curriculum will Silver Oaks Mokila follow?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Silver Oaks Mokila's academic offering includes the IB Primary Years Programme (PYP), with the school's campus listing also featuring IB MYP and CBSE. The admissions team can help parents understand the programme availability for each grade.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">6. What makes the Silver Oaks approach to education different?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">At Silver Oaks, education goes beyond academic achievement. Guided by the philosophy of Character Before Competence, the school focuses on developing integrity, empathy, curiosity, responsibility and independent thinking alongside academic capabilities.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">7. How does Silver Oaks encourage learning beyond textbooks?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Through inquiry-based learning, experiential activities, collaborative projects and real-world connections, children are encouraged to ask questions, explore ideas, make discoveries and apply their learning meaningfully.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">8. How does Silver Oaks nurture a child's overall development?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Silver Oaks follows an inside-out approach to education, nurturing intellectual, emotional, social and physical development. The emphasis is on helping children grow into confident learners, empathetic individuals and responsible members of society.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">9. Are admissions open for Silver Oaks Mokila?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Yes. Enquiries are open for the 2027–28 academic year. Parents can register their interest through the official Silver Oaks website.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">10. How can I apply for admission to Silver Oaks Mokila?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Parents can begin by filling out the online enquiry form on the Silver Oaks website. The admissions team will guide them through the subsequent steps, including the application process and campus visit.</p>
+        </details>
+        <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">11. Can parents visit the Mokila campus before applying?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Yes. Parents can connect with the admissions team to enquire about campus visits and understand the school's learning philosophy, curriculum and environment.</p>
+        </details>
+        <!-- <details class="group border-b border-ink/20 py-6">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-6 font-heading text-lg leading-snug md:text-2xl">How are discipline, behaviour issues and bullying handled?<span class="text-3xl font-light text-brand transition-transform duration-300 group-open:rotate-45">+</span></summary>
+          <p class="mt-4 leading-relaxed text-ink/75">Discipline at Silver Oaks is handled with calm, clarity, and respect. Children don’t get shouted at or frightened. Bullying is taken very seriously. Any report is addressed immediately. The goal is always the same: create a safe, respectful environment where every child feels protected, heard, and confident enough to be themselves.</p>
+        </details> -->
+      </div>
+    </section>
+
+
+    <!-- ========== 9. APPLY TODAY + DOWNLOADS (covers are the first pages of the real PDFs) ========== -->
+    <section id="downloads" class="bg-stone py-10 md:py-12 lg:py-16">
+      <div class="mx-auto max-w-[90rem] px-5 md:px-10">
+        <h2 data-split class="text-center text-[min(1.875rem,7.6vw)] leading-tight md:text-5xl"><span class="block md:inline">Download Now</span></h2>
+
+        <div class="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-4 md:mt-14 md:gap-10">
+          <button type="button" data-download="brochure" data-fade class="group flex flex-col text-left">
+            <span class="block overflow-hidden bg-white p-2 shadow-sm md:p-4 transition-shadow duration-500 group-hover:shadow-xl">
+              <img decoding="async" src="images/brochure-cover.jpg" alt="Mini brochure cover: The Human Project, Silver Oaks International School Mokila" class="aspect-[3/4] w-full object-cover object-top transition-transform duration-1000 group-hover:scale-[1.03]" loading="lazy">
+            </span>
+            <span class="mt-4 block font-heading text-lg font-medium md:mt-5 md:text-3xl">Mini Brochure</span>
+            <span class="mt-1 mb-4 block text-sm text-ink/70">Silver Oaks Mokila · PDF, 6 pages</span>
+            <!-- Phones: a bordered button. Larger screens: an underlined link. -->
+            <span class="mt-auto flex min-h-11 w-full items-center justify-center border border-ink px-2 text-center text-[10px] font-semibold tracking-[0.08em] uppercase transition-colors group-hover:bg-ink group-hover:text-white group-active:bg-ink group-active:text-white max-md:bg-white max-md:group-active:bg-ink max-md:group-data-pressed:bg-ink max-md:group-active:text-white max-md:group-data-pressed:text-white md:mt-0 md:inline-flex md:min-h-0 md:w-auto md:justify-start md:self-start md:border-0 md:border-b md:px-0 md:pb-0.5 md:text-[11px] md:tracking-[0.15em] md:group-hover:border-brand md:group-hover:bg-transparent md:group-hover:text-brand">Download Mini Brochure</span>
+          </button>
+          <button type="button" data-download="fees" data-fade class="group flex flex-col text-left">
+            <span class="block overflow-hidden bg-white p-2 shadow-sm md:p-4 transition-shadow duration-500 group-hover:shadow-xl">
+              <img decoding="async" src="images/fee-structure-cover.jpg" alt="Fee structure cover: Nurturing Humans for 25 Years" class="aspect-[3/4] w-full object-cover object-top transition-transform duration-1000 group-hover:scale-[1.03]" loading="lazy">
+            </span>
+            <span class="mt-4 block font-heading text-lg font-medium md:mt-5 md:text-3xl">Fee Structure</span>
+            <span class="mt-1 mb-4 block text-sm text-ink/70">Academic year 2027 - 2028 · PDF, 2 pages</span>
+            <span class="mt-auto flex min-h-11 w-full items-center justify-center border border-ink px-2 text-center text-[10px] font-semibold tracking-[0.08em] uppercase transition-colors group-hover:bg-ink group-hover:text-white group-active:bg-ink group-active:text-white max-md:bg-white max-md:group-active:bg-ink max-md:group-data-pressed:bg-ink max-md:group-active:text-white max-md:group-data-pressed:text-white md:mt-0 md:inline-flex md:min-h-0 md:w-auto md:justify-start md:self-start md:border-0 md:border-b md:px-0 md:pb-0.5 md:text-[11px] md:tracking-[0.15em] md:group-hover:border-brand md:group-hover:bg-transparent md:group-hover:text-brand">Download Fee Structure</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========== 10. CONTACT US ========== -->
+    <section id="contact" class="mx-auto grid max-w-[90rem] gap-14 px-5 py-12 md:px-10 lg:grid-cols-2 lg:gap-20 lg:py-16">
+
+      <!-- THE details form. This is the only form on the page.
+           Any "Fee Structure" / "Download Brochure" button moves this whole block into the pop-up,
+           and it moves back here when the pop-up closes (script part 9). -->
+      <div id="lead-home" data-fade>
+        <div id="lead-box" class="@container relative bg-paper">
+          <h2 id="lead-title" class="pr-10 text-3xl leading-tight md:text-5xl">Contact Us</h2>
+          <p class="mt-3 text-ink/75">Fill in your details, we’ll reach out to you within 24 hours.</p>
+
+          <form id="lead-form" class="mt-5 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-2 sm:gap-y-4 @3xl:grid-cols-3">
+            <div>
+              <label for="lead-parent" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Parent Name *</label>
+              <input id="lead-parent" name="mx_Parent_Name" type="text" maxlength="50" required autocomplete="name" placeholder="Full name"
+                     class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors placeholder:text-ink/40 focus:border-brand focus:outline-none">
+            </div>
+            <div>
+              <label for="lead-student" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Student Name *</label>
+              <input id="lead-student" name="FirstName" type="text" maxlength="100" required autocomplete="off" placeholder="Full name"
+                     class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors placeholder:text-ink/40 focus:border-brand focus:outline-none">
+            </div>
+            <div>
+              <label for="lead-email" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Email *</label>
+              <input id="lead-email" name="EmailAddress" type="email" maxlength="100" required autocomplete="email" placeholder="you@email.com"
+                     class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors placeholder:text-ink/40 focus:border-brand focus:outline-none">
+            </div>
+            <div>
+              <label for="lead-phone" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Phone Number *</label>
+              <!-- pattern = 10 digits starting with 6, 7, 8 or 9 (Indian mobile) -->
+              <input id="lead-phone" name="Phone" type="tel" maxlength="10" required autocomplete="tel-national" placeholder="10-digit mobile"
+                     inputmode="numeric" pattern="[6-9][0-9]{9}" title="Enter a 10-digit mobile number"
+                     class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors placeholder:text-ink/40 focus:border-brand focus:outline-none">
+            </div>
+            <div>
+              <label for="lead-dob" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Date of Birth (Student) *</label>
+              <!-- type="date" sends the value as YYYY-MM-DD, the format the CRM expects -->
+              <input id="lead-dob" name="mx_Date_of_Birth" type="date" required
+                     class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors focus:border-brand focus:outline-none">
+            </div>
+            <div>
+              <label for="lead-year" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Academic Year *</label>
+              <!-- Mokila takes admissions for 2027-2028 only (same as silveroaks.co.in/enquiry-form) -->
+              <select id="lead-year" name="mx_Academic_Year" required
+                      class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors focus:border-brand focus:outline-none">
+                <option value="2027-2028">2027-2028</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2 @3xl:col-span-1">
+              <label for="lead-grade" class="block text-[11px] font-semibold tracking-[0.15em] uppercase">Grade *</label>
+              <!-- The values (PP1, Grade1 …) are the ones the CRM uses for Mokila -->
+              <select id="lead-grade" name="mx_Class" required
+                      class="mt-1 w-full border-b border-ink/30 bg-transparent py-2 text-base transition-colors focus:border-brand focus:outline-none">
+                <option value="">Select Grade</option>
+                <option value="PP1">PP 1</option>
+                <option value="PP2">PP 2</option>
+                <option value="Grade1">Grade 1</option>
+                <option value="Grade2">Grade 2</option>
+                <option value="Grade3">Grade 3</option>
+                <option value="Grade4">Grade 4</option>
+                <option value="Grade5">Grade 5</option>
+              </select>
+            </div>
+
+            <!-- Which PDF they want. The buttons on the page pick this for the visitor.
+                 The real radio button is hidden (sr-only); the tile around it shows the choice. -->
+            <fieldset class="sm:col-span-2">
+              <legend class="text-[11px] font-semibold tracking-[0.15em] uppercase">I’m interested in *</legend>
+              <div class="mt-2 grid gap-3 min-[360px]:grid-cols-2">
+                <label class="flex cursor-pointer items-center gap-3 border border-ink/20 bg-white px-4 py-2.5 text-sm font-medium transition-colors hover:border-ink/40 has-checked:border-brand has-checked:text-brand has-focus-visible:ring-2 has-focus-visible:ring-brand/40">
+                  <input type="radio" name="download" value="fees" class="peer sr-only" checked>
+                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-ink/30 text-transparent transition-colors peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white">
+                    <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.5l2.2 2.2L9.5 3.8"/></svg>
+                  </span>
+                  Fee Structure
+                </label>
+                <label class="flex cursor-pointer items-center gap-3 border border-ink/20 bg-white px-4 py-2.5 text-sm font-medium transition-colors hover:border-ink/40 has-checked:border-brand has-checked:text-brand has-focus-visible:ring-2 has-focus-visible:ring-brand/40">
+                  <input type="radio" name="download" value="brochure" class="peer sr-only">
+                  <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-ink/30 text-transparent transition-colors peer-checked:border-brand peer-checked:bg-brand peer-checked:text-white">
+                    <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.5 6.5l2.2 2.2L9.5 3.8"/></svg>
+                  </span>
+                  Mini Brochure
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Consent: must be ticked before the form can be sent -->
+            <label class="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-ink/80 sm:col-span-2 @3xl:col-span-3">
+              <input id="lead-consent" type="checkbox" required class="mt-0.5 h-5 w-5 shrink-0 accent-brand">
+              <span>I agree to be contacted by Silver Oaks International School by phone, SMS, WhatsApp or email about admissions, and I accept the <a href="privacy-policy.html" target="_blank" class="text-brand underline underline-offset-2">Privacy Policy</a>. *</span>
+            </label>
+
+            <button id="lead-submit" type="submit" class="flex w-full items-center justify-center sm:col-span-2 @3xl:col-span-3 bg-brand py-3.5 text-[12px] font-semibold tracking-[0.2em] text-white uppercase transition-colors hover:bg-maroon">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map, address, hours and phone numbers -->
+      <div class="space-y-10">
+        <iframe data-fade src="https://www.google.com/maps?q=Silver+Oaks+International+School+Mokila+Campus,+Mokila,+Shankarpally,+Telangana+501203&output=embed"
+                title="Map of Silver Oaks Mokila Campus" class="h-72 w-full border-0"
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        <div data-fade class="grid gap-8 sm:grid-cols-2">
+          <div>
+            <h3 class="text-2xl">Address</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink/75">Silver Oaks International School - Mokila Campus, Sy No. 53, Mokila Shankarpally, Hyderabad, Telangana 501203</p>
+            <a href="https://www.google.com/maps/search/?api=1&query=Silver+Oaks+International+School+Mokila+Campus" target="_blank" rel="noopener"
+               class="mt-3 inline-block border-b border-ink pb-0.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors hover:border-brand hover:text-brand">Get Directions</a>
+          </div>
+          <div>
+            <h3 class="text-2xl">Hours of Operation</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink/75">Mon - Fri: 8:00 AM - 3:00 PM<br>Sat (1st, 3rd &amp; 5th weeks): Office &amp; Senior School only<br>Sun: We are closed</p>
+          </div>
+          <div class="sm:col-span-2">
+            <h3 class="text-2xl">Contact Number</h3>
+            <p class="mt-2 text-sm leading-relaxed text-ink/75">
+              Admissions - <a href="tel:9603855577" class="hover:text-brand">9603855577</a> &amp; <a href="tel:9603955577" class="hover:text-brand">9603955577</a><br>
+              Front Office - <a href="tel:9603155577" class="hover:text-brand">9603155577</a><br>
+              <span class="whitespace-nowrap max-md:text-[clamp(0.7rem,3.4vw,0.875rem)]">Admissions Email - <a href="mailto:admissions@mk.silveroaks.co.in" class="hover:text-brand">admissions@mk.silveroaks.co.in</a></span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-maroon pt-16 pb-24 text-white md:pb-0">
+    <div class="mx-auto grid max-w-[90rem] gap-12 px-5 md:grid-cols-[2fr_1fr_1fr] md:px-10">
+      <div>
+        <img decoding="async" src="images/logo-white.svg" alt="Silver Oaks International School, Mokila" class="h-28 w-auto md:h-32">
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-white/70">Silver Oaks International School - Mokila Campus, Sy No. 53, Mokila Shankarpally, Hyderabad, Telangana 501203</p>
+        <div class="mt-6 flex gap-5 text-white/80">
+          <a href="https://www.facebook.com/SilverOaksMokila/" target="_blank" rel="noopener" aria-label="Facebook" class="hover:text-white">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3c-2.8 0-4 1.7-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.5c0-.3.2-.5.5-.5z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/silveroaksmokila/" target="_blank" rel="noopener" aria-label="Instagram" class="hover:text-white">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="https://www.youtube.com/@silveroaksinternationalschools" target="_blank" rel="noopener" aria-label="YouTube" class="hover:text-white">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.5a3 3 0 0 0-2.1-2.1C19 5 12 5 12 5s-7 0-8.9.4A3 3 0 0 0 1 7.5 31 31 0 0 0 .6 12 31 31 0 0 0 1 16.5a3 3 0 0 0 2.1 2.1C5 19 12 19 12 19s7 0 8.9-.4a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.5 31 31 0 0 0-.4-4.5zM9.8 15V9l5.2 3z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/school/silver-oaks-international-schools/" target="_blank" rel="noopener" aria-label="LinkedIn" class="hover:text-white">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9V21H9z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">Our Campuses</p>
+        <ul class="mt-5 space-y-2 text-sm text-white/70">
+          <li><a href="https://www.silveroaks.co.in/campus/bachupally-hyderabad" class="hover:text-white">Bachupally</a></li>
+          <li><a href="https://www.silveroaks.co.in/campus/wadakpally-hyderabad" class="hover:text-white">Wadakpally</a></li>
+          <li><a href="https://www.silveroaks.co.in/campus/bowrampet-hyderabad" class="hover:text-white">Bowrampet</a></li>
+          <li><a href="https://www.silveroaks.co.in/campus/rushikonda-vizag" class="hover:text-white">Rushikonda</a></li>
+          <li><a href="https://www.silveroaks.co.in/campus/kommadi-vizag" class="hover:text-white">Kommadi</a></li>
+          <li><a href="https://www.silveroaks.co.in/campus/mokila-hyderabad" class="hover:text-white">Mokila</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-[11px] font-semibold tracking-[0.2em] uppercase">Quick Links</p>
+        <ul class="mt-5 space-y-2 text-sm text-white/70">
+          <li><a href="https://www.silveroaks.co.in/about-us" class="hover:text-white">About us</a></li>
+          <li><a href="https://www.silveroaks.co.in/our-people" class="hover:text-white">Our People</a></li>
+          <li><a href="https://www.silveroaks.co.in/careers" class="hover:text-white">Careers</a></li>
+          <li><a href="https://www.silveroaks.co.in/public-disclosure" class="hover:text-white">Public Disclosure</a></li>
+          <li><a href="privacy-policy.html" class="hover:text-white">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mx-auto mt-14 flex max-w-[90rem] flex-col items-center justify-between gap-3 border-t border-white/15 px-5 py-6 text-xs text-white/60 md:flex-row md:px-10">
+      <p>©Copyright Silver Oaks International School 2025</p>
+      <a href="#top" class="tracking-[0.15em] uppercase hover:text-white">Back to Top ↑</a>
+    </div>
+  </footer>
+
+
+  <!-- ========== ANNOUNCEMENT POP-UP ==========
+       Opens a moment after the page loads, once per visit, and stays until closed (script part 2e).
+       <dialog> is a built-in HTML pop-up: it handles the dark background and the Esc key for us. -->
+  <dialog id="promo" class="m-auto w-[calc(100%-2.5rem)] max-w-md overflow-visible bg-transparent md:max-w-lg p-0 backdrop:bg-black/70" aria-labelledby="promo-title">
+    <div class="relative bg-paper px-8 py-12 text-center text-ink outline-none md:px-12 md:py-16" tabindex="-1" autofocus>
+      <button type="button" id="promo-close" class="absolute top-3 right-4 text-3xl leading-none font-light text-ink/60 transition-colors hover:text-ink" aria-label="Close">×</button>
+
+      <img decoding="async" src="images/logo.svg" alt="Silver Oaks International School, Mokila" class="mx-auto mb-8 h-20 w-auto md:h-24">
+
+      <p id="promo-title" class="text-base font-semibold tracking-[0.2em] uppercase md:text-lg">Admission Enquiries</p>
+      <p class="mt-2 text-5xl leading-none font-semibold tracking-tight whitespace-nowrap uppercase md:text-6xl">Open Now</p>
+      <p class="mt-4 text-lg font-medium md:text-xl">(PP1 - GRADE 5)</p>
+
+      <div class="mx-auto my-8 h-px w-16 bg-ink/25"></div>
+
+      <p class="text-sm font-semibold tracking-[0.15em] text-balance uppercase md:text-base">Mokila Campus Opening June 2027</p>
+
+      <!-- Takes the visitor to the form in the Contact section (script part 2e) -->
+      <button type="button" id="promo-cta" class="mt-8 bg-brand px-8 py-3.5 text-[11px] font-semibold tracking-[0.15em] text-white uppercase transition-colors hover:bg-maroon active:bg-maroon">Enquire Now</button>
+    </div>
+  </dialog>
+
+
+  <!-- ========== PAGE TRANSITION ==========
+       After Submit, a red circle grows out of the Submit button until it fills the screen,
+       then the thank-you page opens (script part 8). It starts as a circle of size 0, so it's invisible. -->
+  <div id="page-transition" class="pointer-events-none fixed inset-0 z-[60] bg-brand" style="clip-path: circle(0px at 50% 50%)" aria-hidden="true"></div>
+
+
+  <!-- ========== MOBILE BOTTOM BAR (phones only): hidden on the hero, slides up after it (script part 2b) ========== -->
+  <div id="mobile-bar" class="invisible fixed inset-x-0 bottom-0 z-30 grid grid-cols-2 text-[11px] font-semibold tracking-[0.15em] uppercase md:hidden">
+    <button type="button" data-download="fees" class="bg-paper py-4 text-ink shadow-[0_-1px_0_rgba(0,0,0,0.1)]">Download Fee Structure</button>
+    <button type="button" data-download="brochure" class="bg-brand py-4 text-white">Download Mini Brochure</button>
+  </div>
+
+
+  <!-- ========== JAVASCRIPT ==========
+       - GSAP + ScrollTrigger: animations that follow the scroll
+       - SplitText: splits headings into lines so each line can slide up
+       - Lenis: smooth scrolling -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+
+    // If the visitor's device asks for less motion, we skip the animations (content still shows).
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+    // ---------- 1. Smooth scrolling (Lenis) ----------
+    // "anchors" makes links like #fees scroll smoothly; the offset leaves room for the header.
+    const lenis = new Lenis({ anchors: { offset: -110 } });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+
+    // ---------- 2. Header turns solid once the page is scrolled ----------
+    const siteHeader = document.getElementById('site-header');
+    function updateHeader() {
+      siteHeader.toggleAttribute('data-solid', window.scrollY > 80);
+    }
+    lenis.on('scroll', updateHeader);
+    updateHeader();
+
+
+    // ---------- 2b. After the hero: the two side tabs (Fee Structure + Download Brochure) slide in ----------
+    // (On phones the bottom bar does the same, sliding up from the bottom.)
+    const sideTabs = document.getElementById('side-tabs');
+    const mobileBar = document.getElementById('mobile-bar');
+    gsap.set(sideTabs, { autoAlpha: 0, xPercent: 100 });
+    gsap.set(mobileBar, { autoAlpha: 0, yPercent: 100 });
+
+    function showAfterHero() {
+      gsap.to(sideTabs, { autoAlpha: 1, xPercent: 0, duration: 0.6, ease: 'power3.out' });
+      gsap.to(mobileBar, { autoAlpha: 1, yPercent: 0, duration: 0.5, ease: 'power3.out' });
+    }
+    function hideOnHero() {
+      gsap.to(sideTabs, { autoAlpha: 0, xPercent: 100, duration: 0.4, ease: 'power3.in' });
+      gsap.to(mobileBar, { autoAlpha: 0, yPercent: 100, duration: 0.4, ease: 'power3.in' });
+    }
+    ScrollTrigger.create({
+      trigger: 'main > section',            // the hero (first section)
+      start: 'bottom 120px',                // when the bottom of the hero passes just under the header
+      onEnter: showAfterHero,
+      onLeaveBack: hideOnHero
+    });
+
+
+    // ---------- 2d. Phones: show a "pressed" colour while a finger is on a button ----------
+    // Touch screens don't reliably show :active, so we mark the button ourselves (data-pressed)
+    // and remove the mark when the finger lifts or starts scrolling.
+    document.addEventListener('touchstart', function (event) {
+      const button = event.target.closest('button, a');
+      if (button) button.setAttribute('data-pressed', '');
+    }, { passive: true });
+    ['touchend', 'touchcancel', 'touchmove'].forEach(function (type) {
+      document.addEventListener(type, function () {
+        document.querySelectorAll('[data-pressed]').forEach(function (button) { button.removeAttribute('data-pressed'); });
+      }, { passive: true });
+    });
+
+
+    // ---------- 2c. Scroll lock: used while the menu or the pop-up is open ----------
+    // Stops both the smooth scrolling and the browser's own scrolling (needed for touch screens).
+    function lockScroll() {
+      lenis.stop();
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function unlockScroll() {
+      document.documentElement.style.overflow = '';
+      lenis.start();
+    }
+
+
+    // ---------- 2e. Announcement pop-up: opens 1.5 seconds after the page loads, once per visit ----------
+    const promo = document.getElementById('promo');
+
+    function hasSeenPromo() {
+      try { return sessionStorage.getItem('so-mokila-promo') === 'seen'; } catch (e) { return false; }
+    }
+    function rememberPromo() {
+      try { sessionStorage.setItem('so-mokila-promo', 'seen'); } catch (e) {}
+    }
+
+    function openPromo() {
+      promo.showModal();
+      lockScroll();
+      rememberPromo();
+      if (!reduceMotion) {
+        gsap.fromTo(promo.firstElementChild, { y: 30, opacity: 0, scale: 0.97 }, { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' });
+      }
+    }
+
+    document.getElementById('promo-close').addEventListener('click', function () { promo.close(); });
+    // Clicking the dark area around the box closes it too
+    promo.addEventListener('click', function (event) {
+      if (event.target === promo) promo.close();
+    });
+    promo.addEventListener('close', unlockScroll);
+
+    // "Enquire Now": close the banner, then go to the form in the Contact section and tint it briefly
+    document.getElementById('promo-cta').addEventListener('click', function () {
+      promo.close();
+      unlockScroll();   // release the scroll lock now (the "close" event arrives a moment later)
+      lenis.scrollTo('#lead-home', { offset: -125, duration: 1.4 });
+      gsap.fromTo('#lead-box', { backgroundColor: '#f8e4e8' }, { backgroundColor: '#f6f4ef', duration: 1.6, delay: 1.3, clearProps: 'backgroundColor' });
+    });
+
+    if (!hasSeenPromo()) setTimeout(openPromo, 1500);
+
+
+    // ---------- 3. Menu: panel slides in from the right, links rise in one after another ----------
+    const menu = document.getElementById('menu');
+    const menuPanel = document.getElementById('menu-panel');
+    const menuBackdrop = document.getElementById('menu-backdrop');
+
+    function openMenu() {
+      menu.classList.remove('hidden');
+      lockScroll();
+      if (reduceMotion) return;
+      gsap.timeline()
+        .fromTo(menuBackdrop, { opacity: 0 }, { opacity: 1, duration: 0.4 })
+        .fromTo(menuPanel, { xPercent: 100 }, { xPercent: 0, duration: 0.7, ease: 'power4.out' }, 0)
+        .fromTo('[data-menu-item]', { x: 30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.45, ease: 'power3.out', stagger: 0.035 }, 0.2);
+    }
+
+    function closeMenu() {
+      unlockScroll();
+      if (reduceMotion) { menu.classList.add('hidden'); return; }
+      gsap.timeline({ onComplete: function () { menu.classList.add('hidden'); } })
+        .to(menuPanel, { xPercent: 100, duration: 0.45, ease: 'power3.in' })
+        .to(menuBackdrop, { opacity: 0, duration: 0.3 }, 0.1);
+    }
+
+    document.getElementById('menu-open').addEventListener('click', openMenu);
+    document.getElementById('menu-close').addEventListener('click', closeMenu);
+    menuBackdrop.addEventListener('click', closeMenu);
+    // Links and the two buttons inside the menu close it first
+    menu.querySelectorAll('a[href^="#"], [data-download]').forEach(function (item) {
+      item.addEventListener('click', closeMenu);
+    });
+
+
+    // ---------- 4. Walkthrough video ----------
+    // The YouTube player is only loaded when the section comes into view (keeps the page fast).
+    // It plays on its own, muted and looping (browsers only allow autoplay without sound).
+    //
+    // Why the "shield": when the mouse is over a YouTube player, the mouse wheel goes to the player,
+    // not to our page, so the smooth scrolling and the browser's own scrolling fight and the page jumps.
+    // An invisible layer over the player keeps the wheel on the page. Clicking it turns the sound on and
+    // steps aside so the player's own buttons can be used; it comes back when the mouse leaves the video.
+    const VIDEO_URL = 'https://www.youtube-nocookie.com/embed/5CamMlfRDHc?autoplay=1&loop=1&playlist=5CamMlfRDHc&playsinline=1&rel=0';
+    const videoButton = document.getElementById('video-button');
+    const videoBox = document.getElementById('video-box');
+    const videoShield = document.getElementById('video-shield');
+    let player = null;
+    let soundOn = false;
+
+    function loadVideo(withSound) {
+      if (player) return;   // already loaded
+      soundOn = withSound;
+      player = document.createElement('iframe');
+      player.src = VIDEO_URL + (withSound ? '&mute=0' : '&mute=1');
+      player.title = 'SilverOaks International School Mokila, Hyderabad.';
+      player.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      player.className = 'absolute inset-0 h-full w-full';
+      videoButton.replaceWith(player);
+      showShield();
+    }
+
+    function showShield() {
+      videoShield.classList.remove('hidden');
+      videoShield.classList.add('flex');
+      document.getElementById('video-sound-label').classList.toggle('hidden', soundOn);
+    }
+    function hideShield() {
+      videoShield.classList.add('hidden');
+      videoShield.classList.remove('flex');
+    }
+
+    // Clicking the poster (before the video has loaded): start it straight away with sound
+    videoButton.addEventListener('click', function () { loadVideo(true); });
+
+    // Clicking the playing video: turn the sound on (restarts it with sound), then let clicks reach the player
+    videoShield.addEventListener('click', function () {
+      if (!soundOn) {
+        soundOn = true;
+        player.src = VIDEO_URL + '&mute=0';
+      }
+      hideShield();
+    });
+    videoBox.addEventListener('mouseleave', function () { if (player) showShield(); });
+
+    if (!reduceMotion) {
+      ScrollTrigger.create({ trigger: '#walkthrough-video', start: 'top 85%', once: true, onEnter: function () { loadVideo(false); } });
+    }
+
+
+    if (!reduceMotion) {
+
+      // ---------- 5. Headings slide up line by line; text and cards fade up ----------
+      // Wait for the fonts, otherwise the lines are measured with the wrong font.
+      document.fonts.ready.then(function () {
+        document.querySelectorAll('[data-split]').forEach(function (heading) {
+          const split = SplitText.create(heading, { type: 'lines', mask: 'lines' });
+          gsap.from(split.lines, {
+            yPercent: 110,
+            duration: 1.1,
+            ease: 'power4.out',
+            stagger: 0.1,
+            scrollTrigger: { trigger: heading, start: 'top 90%', once: true }
+          });
+        });
+        ScrollTrigger.refresh();
+      });
+
+      document.querySelectorAll('[data-fade]').forEach(function (element) {
+        gsap.from(element, {
+          y: 30,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          scrollTrigger: { trigger: element, start: 'top 92%', once: true }
+        });
+      });
+
+
+      // ---------- 6. Parallax (depth): the photo moves inside a frame that stays still ----------
+      // Each photo with data-parallax is 10% bigger than its frame (class scale-110), which gives it
+      // 5% of spare picture above and below. While the frame crosses the screen, the photo travels
+      // from -5% to +5%, so it seems to sit further back than the page. No gaps, no visible zoom.
+      document.querySelectorAll('[data-parallax]').forEach(function (photo) {
+        gsap.fromTo(photo,
+          { yPercent: -5 },
+          {
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: { trigger: photo.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
+          }
+        );
+      });
+
+      // Walkthrough video: when the section comes into view, the video opens from the right edge to the left (once).
+      // A paper-coloured cover over the video shrinks to nothing (moving it is cheaper than clipping the video).
+      gsap.fromTo('#walkthrough-cover',
+        { scaleX: 1 },
+        {
+          scaleX: 0,
+          duration: 1.4,
+          ease: 'power3.inOut',
+          scrollTrigger: { trigger: '#walkthrough-video', start: 'top 75%', once: true }
+        }
+      );
+
+      // The hero photo drifts down a little as you scroll past it
+      gsap.to('#hero-image', {
+        yPercent: 25,
+        ease: 'none',
+        scrollTrigger: { trigger: '#hero-image', start: 'top top', end: 'bottom top', scrub: true }
+      });
+
+      // ---------- 6b. "Our Commitment" numbers count up from 0 when the list comes into view (once) ----------
+      // The real number is already in the HTML, so it still shows if the script doesn't run.
+      document.querySelectorAll('[data-count]').forEach(function (el) {
+        const target = Number(el.dataset.count);
+        const counter = { value: 0 };
+        gsap.to(counter, {
+          value: target,
+          duration: 2,
+          ease: 'power2.out',
+          onStart: function () { el.textContent = '0'; },
+          onUpdate: function () { el.textContent = Math.round(counter.value).toLocaleString('en-US'); },
+          scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+        });
+      });
+    }
+
+
+    // ---------- 7. Facilities strip: repeat the cards so the row loops without a gap ----------
+    // The row gets 4 copies of its cards; the animation moves it by half its length, then starts again.
+    // The copies are hidden from screen readers so each card is only read once.
+    document.querySelectorAll('.facility-track').forEach(function (track) {
+      const cards = Array.from(track.children);
+      for (let i = 0; i < 3; i++) {
+        cards.forEach(function (card) {
+          const copy = card.cloneNode(true);
+          copy.setAttribute('aria-hidden', 'true');
+          track.appendChild(copy);
+        });
+      }
+    });
+
+
+    // ---------- 7b. Curriculum cards on phones: an endless carousel ----------
+    // One card fills the frame. Every 4 seconds it slides to the next one, and after the last
+    // comes the first again, always moving forward. The cards follow your finger when dragged.
+    // How the endless loop works: a copy of the last card sits before the first, and a copy of the
+    // first card sits after the last. When we slide onto a copy, we silently jump to the real card.
+    const curriculumTrack = document.getElementById('curriculum-track');
+    const curriculumViewport = document.getElementById('curriculum-viewport');
+    const curriculumCount = document.getElementById('curriculum-count');
+    const realCards = Array.from(curriculumTrack.children);
+    const cardTotal = realCards.length;
+    let currentCard = 0;
+    let carouselPaused = false;
+    let resumeTimer;
+
+    function makeCopy(card) {
+      const copy = card.cloneNode(true);
+      copy.removeAttribute('style');            // don't copy animation styles
+      copy.removeAttribute('data-fade');
+      copy.removeAttribute('data-parallax');
+      copy.setAttribute('aria-hidden', 'true');
+      copy.setAttribute('tabindex', '-1');
+      copy.classList.add('md:hidden');          // copies are only used on phones
+      return copy;
+    }
+    curriculumTrack.prepend(makeCopy(realCards[cardTotal - 1]));
+    curriculumTrack.append(makeCopy(realCards[0]));
+
+    function isPhone() { return window.innerWidth < 768; }
+
+    // Position 0 is the copy of the last card, so real card n sits at position n + 1
+    function placeTrack(animate) {
+      const target = { xPercent: -100 * (currentCard + 1), x: 0 };
+      if (animate) {
+        gsap.to(curriculumTrack, Object.assign(target, {
+          duration: 0.7,
+          ease: 'power3.inOut',
+          onComplete: function () {
+            // Landed on a copy? Jump to the real card (looks identical, so nobody notices)
+            if (currentCard === cardTotal) currentCard = 0;
+            if (currentCard === -1) currentCard = cardTotal - 1;
+            gsap.set(curriculumTrack, { xPercent: -100 * (currentCard + 1) });
+          }
+        }));
+      } else {
+        gsap.set(curriculumTrack, target);
+      }
+      const shown = (currentCard + cardTotal) % cardTotal;
+      curriculumCount.textContent = (shown + 1) + ' / ' + cardTotal;
+    }
+
+    function showCard(index) {
+      if (!isPhone()) return;
+      currentCard = index;
+      placeTrack(true);
+    }
+
+    function pauseCarousel() {
+      carouselPaused = true;
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(function () { carouselPaused = false; }, 8000);
+    }
+
+    // Start position, and reset when the screen size changes (tablets and up show a normal grid)
+    function setupCarousel() {
+      if (isPhone()) placeTrack(false);
+      else gsap.set(curriculumTrack, { clearProps: 'transform' });
+    }
+    setupCarousel();
+    window.addEventListener('resize', setupCarousel);
+
+    document.getElementById('curriculum-prev').addEventListener('click', function () { pauseCarousel(); showCard(currentCard - 1); });
+    document.getElementById('curriculum-next').addEventListener('click', function () { pauseCarousel(); showCard(currentCard + 1); });
+
+    // Drag / swipe: the track follows the finger, then moves to the next or previous card
+    let dragStartX = null;
+    let dragDistance = 0;
+    curriculumViewport.addEventListener('pointerdown', function (event) {
+      if (!isPhone()) return;
+      dragStartX = event.clientX;
+      dragDistance = 0;
+      pauseCarousel();
+    });
+    window.addEventListener('pointermove', function (event) {
+      if (dragStartX === null) return;
+      dragDistance = event.clientX - dragStartX;
+      gsap.set(curriculumTrack, { x: dragDistance });
+    });
+    window.addEventListener('pointerup', function () {
+      if (dragStartX === null) return;
+      dragStartX = null;
+      if (dragDistance < -50) showCard(currentCard + 1);       // dragged left: next card
+      else if (dragDistance > 50) showCard(currentCard - 1);   // dragged right: previous card
+      else placeTrack(true);                                   // small drag: snap back
+    });
+    // A drag shouldn't count as a tap on the card's button
+    curriculumViewport.addEventListener('click', function (event) {
+      if (Math.abs(dragDistance) > 10) { event.stopPropagation(); event.preventDefault(); }
+    }, true);
+
+    setInterval(function () {
+      if (isPhone() && !carouselPaused && !document.hidden && dragStartX === null) showCard(currentCard + 1);
+    }, 4000);
+
+
+    // ---------- 8. The form: send to CRM, then the thank-you page ----------
+
+    // Silver Oaks LeadSquared CRM. These fixed fields are copied from silveroaks.co.in/enquiry-form
+    // and are sent along with the details the visitor types in.
+    const CRM_URL = 'https://web-in21.mxradon.com/t/FormTracker.aspx';
+    const CRM_FIXED_FIELDS = {
+      mx_School_Campus: 'Hyderabad - Mokila',
+      Source: 'SO Website',
+      MXHOrgCode: '54281',
+      MXHLandingPageId: '7e69b31b-57d6-11ee-a797-02342baa918a',
+      MXHFormBehaviour: '1',
+      MXHFormDataTransfer: '0',
+      MXHRedirectUrl: 'https://www.silveroaks.co.in/thank-you/',
+      MXHAsc: '5',
+      MXHPageTitle: 'Silver Oaks Enquiry Landing Page 04Sep24',
+      MXHOutputMessagePosition: '1',
+      MXHIsExternallyUsed: '1'
+    };
+
+    // Sends the form's details to the CRM in the background.
+    // "no-cors" = we can't read the CRM's reply, but the details are delivered.
+    // "keepalive" = the request finishes even though we open the thank-you page right after.
+    function sendLead(form) {
+      const data = new FormData(form);
+      data.delete('download');   // the PDF choice is only for this page, not for the CRM
+      for (const key in CRM_FIXED_FIELDS) {
+        data.append(key, CRM_FIXED_FIELDS[key]);
+      }
+      fetch(CRM_URL, { method: 'POST', mode: 'no-cors', body: data, keepalive: true }).catch(function () {});
+    }
+
+    const leadBox = document.getElementById('lead-box');      // the block with the form (Contact section)
+    const leadForm = document.getElementById('lead-form');
+
+    // Every "Fee Structure" / "Download Brochure" button takes the visitor to the form in the Contact section,
+    // ticks the matching choice, and briefly tints the form so it's clear where to fill in.
+    // The PDFs are only handed out on the thank-you page, after the form is submitted.
+    document.querySelectorAll('[data-download]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        const choice = button.dataset.download;               // "fees" or "brochure"
+        leadForm.querySelector('input[value="' + choice + '"]').checked = true;
+        lenis.scrollTo('#lead-home', { offset: -125, duration: 1.2 });
+        gsap.fromTo(leadBox, { backgroundColor: '#f8e4e8' }, { backgroundColor: '#f6f4ef', duration: 1.6, delay: 1.1, clearProps: 'backgroundColor' });
+      });
+    });
+
+    // Small pictures shown inside the Submit button while it works
+    const SPINNER = '<span class="h-5 w-5 animate-spin rounded-full border-2 border-white/40 border-t-white"></span>';
+    const TICK = '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+    // The browser checks the required fields, the phone pattern and the consent box before "submit" fires.
+    leadForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const submitButton = document.getElementById('lead-submit');
+      submitButton.disabled = true;
+
+      const thankYouPage = 'thank-you.html';
+      sendLead(leadForm);
+
+      if (reduceMotion) {
+        window.location.href = thankYouPage;
+        return;
+      }
+
+      // Where the circle starts: the middle of the Submit button
+      const box = submitButton.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      const transition = document.getElementById('page-transition');
+
+      submitButton.innerHTML = SPINNER;                     // 1. button shows a spinner
+      gsap.timeline({ onComplete: function () { window.location.href = thankYouPage; } })
+        .to({}, { duration: 0.7 })
+        .call(function () { submitButton.innerHTML = TICK; }) // 2. spinner turns into a tick
+        .fromTo(submitButton, { scale: 0.96 }, { scale: 1, duration: 0.3, ease: 'back.out(3)' })
+        .fromTo(transition,                                   // 3. red circle fills the screen
+          { clipPath: 'circle(0px at ' + x + 'px ' + y + 'px)' },
+          { clipPath: 'circle(150vmax at ' + x + 'px ' + y + 'px)', duration: 0.9, ease: 'power3.inOut' },
+          '+=0.2');
+    });
+
+    // If the visitor comes back with the browser's Back button, the page may be restored
+    // exactly as it was (red screen). Reset it so the page is usable again.
+    window.addEventListener('pageshow', function (event) {
+      if (!event.persisted) return;
+      gsap.set('#page-transition', { clipPath: 'circle(0px at 50% 50%)' });
+      const submitButton = document.getElementById('lead-submit');
+      submitButton.disabled = false;
+      submitButton.textContent = 'Submit';
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | Silver Oaks International School, Mokila</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="https://cdn.prod.website-files.com/68da2cddb010df995f887130/6926cf8b75893199581be613_Favicon.png">
+
+  <!-- Same font and colours as index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-brand: #b81b38;
+      --color-maroon: #3f0c17;
+      --color-paper: #f6f4ef;
+      --color-ink: #1d1d1f;
+      --font-body: "Montserrat", Arial, sans-serif;
+    }
+    body {
+      @apply bg-paper font-body text-ink antialiased;
+    }
+    html {
+      font-size: clamp(16px, calc(8px + 0.55vw), 20px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========== PAGE TRANSITION ==========
+       The page opens fully red, exactly how the form page ended.
+       The script shrinks the red circle down onto the tick, which then draws itself. -->
+  <div id="page-transition" class="pointer-events-none fixed inset-0 z-50 bg-brand" aria-hidden="true"></div>
+
+
+  <!-- ========== THANK-YOU MESSAGE (no header or footer on this page) ========== -->
+  <!-- Everything fits one screen: sizes and gaps follow the screen height (svh = % of the screen height). -->
+  <main class="flex min-h-svh flex-col items-center justify-center gap-[2.2svh] px-5 py-[3svh] text-center">
+
+    <img data-reveal src="images/logo.svg" alt="Silver Oaks International School, Mokila" class="h-[clamp(4.5rem,12svh,7.5rem)] w-auto">
+
+    <!-- Tick: the circle and the check mark draw themselves (script) -->
+    <svg id="tick" class="h-[clamp(2.5rem,7svh,5rem)] w-[clamp(2.5rem,7svh,5rem)] text-brand" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+      <circle id="tick-circle" cx="50" cy="50" r="46" stroke="currentColor" stroke-width="2"/>
+      <path id="tick-mark" d="M31 51 L44 64 L70 37" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div>
+      <h1 data-reveal class="text-[clamp(1.6rem,4.4svh,3rem)] leading-tight font-medium tracking-tight">Enquiry Successfully Submitted</h1>
+      <p data-reveal class="mx-auto mt-[1.2svh] max-w-md text-[clamp(0.875rem,2.1svh,1.05rem)] leading-relaxed text-ink/75">Thank you for your submission. Your enquiry form has been successfully submitted!</p>
+    </div>
+
+    <!-- The two downloads, side by side -->
+    <div class="grid w-full max-w-md grid-cols-2 gap-3 md:max-w-xl md:gap-6">
+      <a data-reveal href="files/silver-oaks-mokila-mini-brochure.pdf" download class="group flex flex-col items-center">
+        <span class="block bg-white p-1.5 shadow-sm transition-shadow duration-500 group-hover:shadow-xl md:p-2.5">
+          <img src="images/brochure-cover.jpg" alt="Mini brochure cover" class="aspect-[3/4] h-[clamp(7rem,22svh,16rem)] w-auto object-cover object-top">
+        </span>
+        <span data-button class="mt-[1.6svh] flex min-h-12 w-full items-center justify-center border border-ink bg-white px-2 text-[10px] font-semibold tracking-[0.06em] uppercase transition-colors group-hover:bg-ink group-hover:text-white md:text-[11px] md:tracking-[0.12em]">Download Mini Brochure</span>
+      </a>
+      <a data-reveal href="files/silver-oaks-mokila-fee-structure.pdf" download class="group flex flex-col items-center">
+        <span class="block bg-white p-1.5 shadow-sm transition-shadow duration-500 group-hover:shadow-xl md:p-2.5">
+          <img src="images/fee-structure-cover.jpg" alt="Fee structure cover" class="aspect-[3/4] h-[clamp(7rem,22svh,16rem)] w-auto object-cover object-top">
+        </span>
+        <span data-button class="mt-[1.6svh] flex min-h-12 w-full items-center justify-center border border-brand bg-brand px-2 text-[10px] font-semibold tracking-[0.06em] text-white uppercase transition-colors group-hover:border-maroon group-hover:bg-maroon md:text-[11px] md:tracking-[0.12em]">Download Fee Structure</span>
+      </a>
+    </div>
+
+    <a id="back-link" data-reveal href="index.html" class="inline-block border-b border-ink pb-0.5 text-[11px] font-semibold tracking-[0.15em] uppercase transition-colors hover:border-brand hover:text-brand">
+      ← Back to Silver Oaks Mokila
+    </a>
+  </main>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+  <script>
+    // ---------- 1. Opening animation ----------
+    const transition = document.getElementById('page-transition');
+    const tick = document.getElementById('tick');
+    const circle = document.getElementById('tick-circle');
+    const mark = document.getElementById('tick-mark');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion) {
+      transition.style.display = 'none';
+    } else {
+      // The middle of the tick, and the tick's radius: the red circle shrinks to exactly this
+      const box = tick.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      const r = box.width / 2;
+
+      // Hide the lines of the tick so they can be "drawn"
+      [circle, mark].forEach(function (line) {
+        const length = line.getTotalLength();
+        gsap.set(line, { strokeDasharray: length, strokeDashoffset: length });
+      });
+      gsap.set('[data-reveal]', { opacity: 0, y: 24 });
+
+      gsap.timeline({ delay: 0.15 })
+        .fromTo(transition,                                    // red screen shrinks onto the tick
+          { clipPath: 'circle(150vmax at ' + x + 'px ' + y + 'px)' },
+          { clipPath: 'circle(' + r + 'px at ' + x + 'px ' + y + 'px)', duration: 1, ease: 'power3.inOut' })
+        .set(circle, { strokeDashoffset: 0 })                  // the tick's ring takes over from the red dot
+        .to(transition, { opacity: 0, duration: 0.35 })
+        .to(mark, { strokeDashoffset: 0, duration: 0.45, ease: 'power2.out' }, '-=0.15')
+        .to('[data-reveal]', { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out', stagger: 0.08 }, '-=0.4');
+    }
+
+
+    // ---------- 2. Back link: a red circle grows from the link, then the main page opens ----------
+    document.getElementById('back-link').addEventListener('click', function (event) {
+      if (reduceMotion) return;
+      event.preventDefault();
+      const target = this.href;
+      const box = this.getBoundingClientRect();
+      const x = box.left + box.width / 2;
+      const y = box.top + box.height / 2;
+      gsap.timeline({ onComplete: function () { window.location.href = target; } })
+        .set(transition, { opacity: 1, clipPath: 'circle(0px at ' + x + 'px ' + y + 'px)' })
+        .to(transition, { clipPath: 'circle(150vmax at ' + x + 'px ' + y + 'px)', duration: 0.8, ease: 'power3.inOut' });
+    });
+  </script>
+
+</body>
+</html>
